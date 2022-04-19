@@ -1,0 +1,31 @@
+1	SELECT CEIL(puntos) AS 'entero superior' FROM jugadores;
+2	SELECT FLOOR(minutos) AS 'entero inferior' FROM jugadores;
+3	SELECT COUNT(DISTINCT valoracion) AS 'nº de valoraciones distintas' FROM jugadores;
+4	SELECT RAND() AS 'aleatorio 1', RAND() AS 'aleatorio 2', RAND() AS 'aleatorio 3';
+5	SELECT ROUND(minutos,2) AS 'redondeo' FROM jugadores;
+6	SELECT TRUNCATE(RAND(),3) AS 'nun truncado';
+7	SELECT nombre,minutos, CEIL(minutos) AS 'entero superior' FROM jugadores;
+8	SELECT GREATEST(33, 32, 44, 22, 24, 42, 34, 4, 25, 19) AS 'dorsal más alto', LEAST(33, 32, 44, 22, 24, 42, 34, 4, 25, 19) AS 'dorsal más bajo';
+9	SELECT nombre,rebotes, TRUNCATE(rebotes,0) AS 'forma 1', FLOOR(rebotes) AS 'forma 2' FROM jugadores WHERE TRUNCATE(rebotes,0) AND FLOOR(rebotes)=5;
+10	SELECT COALESCE(NULL,NULL,3,4) AS 'valor no nulo';
+11	SELECT AVG(partidos) AS 'valor medio', COUNT(DISTINCT nombre) AS 'num jugadores' FROM jugadores;
+12	SELECT SUM(partidos) AS 'suma', MAX(partidos) AS 'máximo', MIN(partidos) AS 'mínimo' FROM jugadores;
+13	SELECT ROUND(GREATEST(puntos/5,rebotes/2,asistencias),2) A|S 'mayor' FROM jugadores;
+14	SELECT UPPER(nombre) AS 'mayúsculas', CHAR_LENGTH(nombre) AS 'long1', LENGTH(nombre) AS 'long2', LEFT(nombre,5) AS 'primeros 5 carac.' FROM jugadores;
+15	SELECT BIN(LENGTH(nombre)) AS 'nombre en binario' FROM jugadores;
+16	SELECT CONCAT('El jugador ',nombre,' jugó en los Lakers') AS 'unido' FROM jugadores;
+17	SELECT REPLACE(REPLACE(nombre,'a',1), ' ', '_') AS 'nombre cambiado' FROM jugadores;
+18	SELECT nombre, SUBSTRING(nombre,2,1) AS '2ª letra', SUBSTRING(RIGHT(nombre,2),1,1) AS 'penúltima' FROM jugadores WHERE SUBSTRING(nombre,2,1)=SUBSTRING(RIGHT(nombre,2),1,1);
+19	SELECT CURRENT_TIMESTAMP() AS 'fecha más hora', CURRENT_DATE()	AS 'fecha', CURRENT_TIME()	AS 'hora';
+20	SELECT DAYNAME(NOW()) AS 'nombre dia actual', DAYOFMONTH(NOW()) AS 'mes actual', YEAR(NOW()) AS 'año actual';
+21	SELECT HOUR(NOW()) AS 'horas', MINUTE(NOW()) AS 'minutos', SECOND(NOW()) AS 'segundos';
+22	SELECT CURRENT_TIMESTAMP() AS 'ahora', DATE_ADD(CURRENT_TIMESTAMP(), INTERVAL +1 DAY) AS 'ahora + 1 dia';
+23	SELECT DATE_FORMAT(CURRENT_TIMESTAMP(),'Hoy es día %d del mes %m del año %Y') AS 'fecha';
+24	SELECT TIME_FORMAT(CURRENT_TIMESTAMP(),'La hora es %h y los minutos %i') AS 'horas y minutos';
+25	SELECT BINARY'abcdef'='abcDEF' AS 'Sensible', 'abcdef'='abcDEF' AS 'No sensible';
+26	-- La consulta muestra un 0 porque siempre devuelve 0, lo que importa es la información que nos da. El resultado indica que la consulta tiene 0 columnas, que hay 1 fila. No hay advertencias y esta tardo 9,94 segundos en ejecutarse.
+27	SELECT CONNECTION_ID() AS 'id', CURRENT_USER() AS 'usuario actual', FOUND_ROWS() AS 'filas obtenidas';
+28	SELECT nombre AS 'nombre',AES_ENCRYPT(nombre, 'pass') AS 'nombre cifrado' FROM jugadores;
+29	SELECT nombre AS 'nombre', AES_DECRYPT(AES_ENCRYPT(nombre, 'pass'), 'pass') AS 'Descifrado' FROM jugadores;
+30	-- Obtienes (NULL) cuándo descomprimes con una contraseña equivocada.
+31	SELECT FORMAT(45345234.435,4) AS 'número con formato';

@@ -1,0 +1,1 @@
+"C:\xampp\mysql\bin\mysql.exe" -P 3306 -u root -p

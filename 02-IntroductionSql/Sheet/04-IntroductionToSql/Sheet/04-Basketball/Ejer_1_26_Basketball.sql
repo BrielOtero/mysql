@@ -1,0 +1,26 @@
+1	select * from jugadores;
+2	select * from jugadores order by nombre asc;
+3	select Nombre,Puntos,Valoracion from jugadores;
+4	select * from jugadores order by valoracion desc;
+5	select * from jugadores order by valoracion desc, nombre asc;
+6	select * from jugadores where minutos>35;
+7	select * from jugadores where nombre='Kobe Bryant';
+8	select Nombre,Puntos from jugadores where valoracion>=3;
+9	select * from jugadores where valoracion<5 and puntos<20 order by nombre asc;
+10	select * from jugadores where partidos<800 or valoracion=3 order by puntos asc,nombre asc;
+11	select * from jugadores where partidos>=800 and partidos<=1000;
+12	select * from jugadores where tapones<=>null;
+13	select nombre as 'Nombre', partidos as 'Partidos jugados', asistencias as 'Asistencias realizadas' from jugadores;
+14	select Nombre,Puntos,Partidos from jugadores where partidos>950 and valoracion=4;
+15	select * from jugadores where partidos<900 or partidos>1000;
+16	select distinct valoracion from jugadores order by valoracion desc;
+17	select * from jugadores order by minutos desc limit 2;
+18	select * from jugadores order by minutos asc limit 2;
+19	select * from jugadores order by rebotes desc limit 1,3;
+20	select * from jugadores where nombre like 'J%E%';
+21	select * from jugadores where nombre like '%L' and rebotes>5;
+22	select * from jugadores where nombre like '_a%';
+23	select distinct valoracion from jugadores;
+24	select tapones+asistencias+rebotes from jugadores; -- Al sumar las filas cuando hay un 'Null' el resultado de la suma es 'Null'.
+25	select Nombre,Partidos*0.25 as '25%' from jugadores;
+26	select Nombre as 'nom', Partidos as 'par', Minutos as 'min', Puntos as 'pun', Rebotes as 'reb', Tapones as 'tap', Asistencias as 'asi', Valoracion as 'val' from jugadores;
