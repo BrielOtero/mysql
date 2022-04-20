@@ -1,0 +1,43 @@
+CREATE TABLE IF NOT EXISTS `jugadores1` (
+  `NOMBRE` varchar(30) NOT NULL COMMENT 'Nombre Jugador',
+  `Partidos` int(5) unsigned zerofill NOT NULL COMMENT 'Partidos jugados',
+  `Minutos` decimal(4,1) NOT NULL COMMENT 'Minutos jugados de media',
+  `Puntos` decimal(4,1) NOT NULL COMMENT 'Puntos de media',
+  `Rebotes` decimal(4,1) NOT NULL COMMENT 'Rebotes de media',
+  `Tapones` decimal(4,1) DEFAULT NULL COMMENT 'Tapones de media',
+  `Asistencias` decimal(4,1) NOT NULL COMMENT 'Asistencias de media',
+  `Valoracion` tinyint(1) NOT NULL COMMENT 'Valoración del jugador'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Mejores jugadores de los Lakers en la liga regular';
+
+CREATE TABLE IF NOT EXISTS `jugadores2` (
+  `NOMBRE` varchar(30) NOT NULL COMMENT 'Nombre Jugador',
+  `Partidos` int(5) unsigned zerofill NOT NULL COMMENT 'Partidos jugados',
+  `Minutos` decimal(4,1) NOT NULL COMMENT 'Minutos jugados de media',
+  `Puntos` decimal(4,1) NOT NULL COMMENT 'Puntos de media',
+  `Rebotes` decimal(4,1) NOT NULL COMMENT 'Rebotes de media',
+  `Tapones` decimal(4,1) DEFAULT NULL COMMENT 'Tapones de media',
+  `Asistencias` decimal(4,1) NOT NULL COMMENT 'Asistencias de media',
+  `Valoracion` tinyint(1) NOT NULL COMMENT 'Valoración del jugador'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Mejores jugadores de los Lakers en la liga regular';
+
+CREATE TABLE IF NOT EXISTS `jugadores3` (
+  `NOMBRE` varchar(30) NOT NULL COMMENT 'Nombre Jugador',
+  `Partidos` int(5) unsigned zerofill NOT NULL COMMENT 'Partidos jugados',
+  `Minutos` decimal(4,1) NOT NULL COMMENT 'Minutos jugados de media',
+  `Puntos` decimal(4,1) NOT NULL COMMENT 'Puntos de media',
+  `Rebotes` decimal(4,1) NOT NULL COMMENT 'Rebotes de media',
+  `Tapones` decimal(4,1) DEFAULT NULL COMMENT 'Tapones de media',
+  `Asistencias` decimal(4,1) NOT NULL COMMENT 'Asistencias de media',
+  `Valoracion` tinyint(1) NOT NULL COMMENT 'Valoración del jugador'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Mejores jugadores de los Lakers en la liga regular';
+
+CREATE TABLE IF NOT EXISTS `jugadores4` (
+  `NOMBRE` varchar(30) NOT NULL COMMENT 'Nombre Jugador',
+  `Partidos` int(5) unsigned zerofill NOT NULL COMMENT 'Partidos jugados',
+  `Minutos` decimal(4,1) NOT NULL COMMENT 'Minutos jugados de media',
+  `Puntos` decimal(4,1) NOT NULL COMMENT 'Puntos de media',
+  `Rebotes` decimal(4,1) NOT NULL COMMENT 'Rebotes de media',
+  `Tapones` decimal(4,1) DEFAULT NULL COMMENT 'Tapones de media',
+  `Asistencias` decimal(4,1) NOT NULL COMMENT 'Asistencias de media',
+  `Valoracion` tinyint(1) NOT NULL COMMENT 'Valoración del jugador'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Mejores jugadores de los Lakers en la liga regular';

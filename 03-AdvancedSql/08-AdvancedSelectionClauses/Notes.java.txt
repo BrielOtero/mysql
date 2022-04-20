@@ -1,0 +1,72 @@
+package clase;
+
+class TablaNotas {
+	private int alumno;
+	private int asignatura;
+	private int nota;
+
+	public TablaNotas(int alumno, int asignatura, int nota) {
+		this.alumno = alumno;
+		this.asignatura = asignatura;
+		this.nota = nota;
+	}
+
+	public int getAsignatura() {
+		return asignatura;
+	}
+
+	public void setAsignatura(int asignatura) {
+		this.asignatura = asignatura;
+	}
+
+	public int getNota() {
+		return nota;
+	}
+
+	public void setNota(int nota) {
+		this.nota = nota;
+	}
+
+	public int getAlumno() {
+		return alumno;
+	}
+
+	public void setAlumno(int alumno) {
+		this.alumno = alumno;
+	}
+}
+
+public class Notas {
+
+	public static void main(String[] args) {
+		TablaNotas notas[]=new TablaNotas[11];
+		notas[0]=new TablaNotas(1, 1, 6);
+		notas[1]=new TablaNotas(1, 2, 5);
+		notas[2]=new TablaNotas(4, 3, 6);
+		notas[3]=new TablaNotas(5, 4, 9);
+		notas[4]=new TablaNotas(7, 5, 8);
+		notas[5]=new TablaNotas(2, 6, 4);
+		notas[6]=new TablaNotas(5, 7, 5);
+		notas[7]=new TablaNotas(3, 4, 8);
+		notas[8]=new TablaNotas(6, 5, 7);
+		notas[9]=new TablaNotas(5, 6, 8);
+		notas[10]=new TablaNotas(8, 7, 9);	 
+	
+		
+		boolean menor;
+		for (TablaNotas fuera : notas) {
+			System.out.printf("%20s %5s %20s  %n","Alumno exterior", "","Alumno interior");
+			System.out.printf("%5s %5s %5s %5s %5s %5s %5s %n","Alumno", "Asignat.","Nota","","Nota","Alumno", "Asignat.");
+			menor=true;
+			for (TablaNotas dentro : notas) {
+				System.out.printf("%5d  %5d  %5d %5s %5d %5d %5d \t"+(dentro.getNota()>fuera.getNota())+"%n",fuera.getAlumno(),fuera.getAsignatura(),fuera.getNota(),"<",dentro.getNota(),dentro.getAlumno(),dentro.getAsignatura());
+				if (dentro.getNota()>fuera.getNota()) {
+					System.out.println(" ** Encuentro un alumno con nota mayor, la mia ya no es la mayor \n");
+					menor=false;
+					break;
+				}
+			}
+			if (menor) System.out.printf("%n ¡¡¡ Mayor nota: %d del alumno %d en la asignatura %d !!! %n",fuera.getNota(),fuera.getAlumno(),fuera.getAsignatura());
+		}
+	}
+}

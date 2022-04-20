@@ -1,0 +1,84 @@
+CREATE DATABASE IF NOT EXISTS `tema6`;
+USE `tema6`;
+
+
+CREATE TABLE IF NOT EXISTS `aulas` (
+  `numero` int NOT NULL,
+  `nombreAula` varchar(14) NULL,
+  `puestos` int NULL,
+  PRIMARY KEY (numero)
+) ENGINE=INNODB DEFAULT CHARSET=UTF8;
+
+insert into aulas (numero, nombreaula, puestos) values
+(11,null,28),
+(20,"Informatica",30),
+(21,"Anatomia",34),
+(31,"Aula Magna",56);
+
+
+CREATE TABLE IF NOT EXISTS `alumnos` (
+  `codigo` int NOT NULL auto_increment,
+  `nombre` varchar(14) NOT NULL,
+  `apellidos` varchar(14) NOT NULL,
+  `altura` int NULL,
+  `aula` int DEFAULT NULL,
+  PRIMARY KEY(codigo),
+  INDEX(aula),
+  FOREIGN KEY (aula) references aulas(numero) on delete restrict on update cascade
+) ENGINE=INNODB DEFAULT CHARSET=UTF8;
+
+insert into alumnos (codigo, nombre, apellidos, altura, aula) values 
+(1,"Philip","K. Dick",190,20),
+(2,"Larry","Niven",177,21),
+(3,"Frederik","Pohl",185,31),
+(4,"Isaac","Asimov",192,21),
+(5,"Ray","Bradbury",182,11),
+(6,"Arthur C.","Clarke",179,20),
+(7,"Julio","Verne",168,20),
+(8,"Frank","Herbert",173,11),
+(9,"Julio","Cortazar",179,11);
+
+
+CREATE TABLE IF NOT EXISTS `asignaturas` (
+  `COD` int(2) NOT NULL,
+  `NOMBRE` varchar(55) DEFAULT NULL,
+  primary key (cod)
+  
+) ENGINE=INNODB DEFAULT CHARSET=UTF8;
+
+
+INSERT INTO `asignaturas` (`COD`, `NOMBRE`) VALUES
+(1, 'Programacion'),
+(2, 'Linguaxes de marcas'),
+(3, 'BD'),
+(4, 'FOL'),
+(5, 'Sistemas informaticos'),
+(6, 'Contornos de desenvolvemento'),
+(7, 'Desenvolvemento de interfaces'),
+(8, 'Programacion multimedia');
+
+CREATE TABLE IF NOT EXISTS `notas` (
+  `alumno` int NOT NULL,
+  `asignatura` int(2) NOT NULL,
+  `NOTA` int(2) DEFAULT NULL,
+  `fecha` timestamp not null default current_timestamp, 
+  index(alumno),
+  index(asignatura),
+  primary key (alumno, asignatura, fecha),
+  foreign key (alumno) references alumnos(codigo) on delete restrict on update cascade,
+  foreign key (asignatura) references asignaturas(cod) on delete restrict on update cascade
+) ENGINE=INNODB DEFAULT CHARSET=UTF8;
+
+INSERT INTO `notas` (ALUMNO, Asignatura, NOTA) VALUES
+(1, 1, 6),
+(1, 2, 5),
+(4, 3, 6),
+(5, 4, 6),
+(7, 5, 8),
+(2, 6, 4),
+(5, 7, 5),
+(3, 4, 8),
+(6, 5, 7),
+(5, 6, 8),
+(8, 7, 9);
+ 
