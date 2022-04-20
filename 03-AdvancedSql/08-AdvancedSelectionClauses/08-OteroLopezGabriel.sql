@@ -10,8 +10,8 @@
 10	SELECT iddepart, SUM(salario) AS suma, MAX(salario) AS maximo, MIN(salario) AS minimo FROM empleados GROUP BY iddepart;
 11	SELECT iddepart, COUNT(oficio) AS numero FROM empleados WHERE oficio='empleado' GROUP BY iddepart;
 12	SELECT oficio, iddepart, COUNT(codemp) AS numero, SUM(salario) AS suma FROM empleados GROUP BY oficio, iddepart;
-13
-14
+13	SELECT iddepart, oficio, COUNT(codemp) AS numero FROM empleados GROUP BY oficio, iddepart HAVING numero>2;
+14	SELECT iddepart, COUNT(DISTINCT oficio) AS numero FROM empleados GROUP BY iddepart;
 15
 16
 17
