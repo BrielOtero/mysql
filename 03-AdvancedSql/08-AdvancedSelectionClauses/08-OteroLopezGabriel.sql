@@ -30,8 +30,8 @@
 30	SELECT apellido,oficio,comision FROM empleados WHERE iddepart NOT IN (SELECT iddepart FROM depart WHERE loc='Sevilla' OR loc='Madrid') AND comision IS null;
 31	SELECT apellido,oficio FROM empleados WHERE iddepart=20 AND oficio IN (SELECT oficio FROM empleados WHERE iddepart=(SELECT iddepart FROM depart WHERE nombre='ventas'));
 32	SELECT nombre FROM asignaturas WHERE cod IN (SELECT asignatura FROM notas WHERE nota>4);
-33
-34
+33	SELECT oficio,MAX(salario) FROM empleados WHERE iddepart IN (SELECT IDDEPART FROM depart WHERE loc='Madrid' OR loc='Sevilla') GROUP BY oficio HAVING AVG(salario)<4000;
+34	SELECT iddepart, nombre FROM depart WHERE iddepart IN (SELECT iddepart FROM empleados GROUP BY iddepart HAVING COUNT(*)>(SELECT COUNT(*) FROM empleados WHERE iddepart=20));
 35
 36
 37
