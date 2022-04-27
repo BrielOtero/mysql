@@ -32,9 +32,18 @@
 32	SELECT nombre FROM asignaturas WHERE cod IN (SELECT asignatura FROM notas WHERE nota>4);
 33	SELECT oficio,MAX(salario) FROM empleados WHERE iddepart IN (SELECT IDDEPART FROM depart WHERE loc='Madrid' OR loc='Sevilla') GROUP BY oficio HAVING AVG(salario)<4000;
 34	SELECT iddepart, nombre FROM depart WHERE iddepart IN (SELECT iddepart FROM empleados GROUP BY iddepart HAVING COUNT(*)>(SELECT COUNT(*) FROM empleados WHERE iddepart=20));
-35
-36
-37
-38
-39
-40
+35	SELECT apellido,salario,iddepart FROM empleados WHERE (salario,iddepart) IN (SELECT MAX(salario),iddepart FROM empleados GROUP BY iddepart);
+36	SELECT nombre, apellidos FROM alumnos WHERE codigo IN (SELECT alumno FROM notas WHERE nota=(SELECT nota FROM notas WHERE alumno=(SELECT codigo FROM alumnos WHERE nombre='frederik' AND apellidos='pohl') AND asignatura=(SELECT cod FROM asignaturas WHERE nombre='fol')));
+37	SELECT * FROM empleados WHERE salario>ALL(SELECT salario FROM empleados WHERE iddepart=20);
+38	SELECT * FROM empleados WHERE salario<ALL(SELECT salario FROM empleados WHERE iddepart=(SELECT iddepart FROM depart WHERE nombre='investigacion'));
+39	SELECT * FROM empleados WHERE salario!=ANY(SELECT salario FROM empleados);
+40	SELECT * FROM empleados AS emple WHERE salario<(SELECT AVG(salario) FROM empleados where iddepart=emple.iddepart);
+41	
+42	
+43	
+44	
+45	
+46	
+47	
+48	
+49	
