@@ -38,11 +38,11 @@
 38	SELECT * FROM empleados WHERE salario<ALL(SELECT salario FROM empleados WHERE iddepart=(SELECT iddepart FROM depart WHERE nombre='investigacion'));
 39	SELECT * FROM empleados WHERE salario!=ANY(SELECT salario FROM empleados);
 40	SELECT * FROM empleados AS emple WHERE salario<(SELECT AVG(salario) FROM empleados where iddepart=emple.iddepart);
-41	
-42	
-43	
-44	
-45	
+41	SELECT * FROM empleados AS emple WHERE NOT EXISTS (SELECT * From empleados where jefe=emple.codemp);
+42	SELECT * FROM empleados AS emple WHERE EXISTS (SELECT * From empleados WHERE jefe=emple.codemp AND salario>3000);
+43	SELECT * FROM notas AS nota WHERE nota>=ALL(SELECT nota FROM notas);
+44	SELECT * FROM asignaturas AS asig WHERE EXISTS (SELECT * FROM notas WHERE asignatura=asig.COD AND nombre LIKE '%os%');
+45	SELECT * FROM asignaturas AS asig WHERE NOT EXISTS (SELECT * FROM notas WHERE asignatura=asig.COD ) ORDER BY cod DESC;
 46	
 47	
 48	
