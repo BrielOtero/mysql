@@ -40,10 +40,37 @@
 40	SELECT * FROM empleados AS emple WHERE salario<(SELECT AVG(salario) FROM empleados where iddepart=emple.iddepart);
 41	SELECT * FROM empleados AS emple WHERE NOT EXISTS (SELECT * From empleados where jefe=emple.codemp);
 42	SELECT * FROM empleados AS emple WHERE EXISTS (SELECT * From empleados WHERE jefe=emple.codemp AND salario>3000);
-43	SELECT * FROM notas AS nota WHERE nota>=ALL(SELECT nota FROM notas);
+43	SELECT * FROM notas AS n WHERE exists(SELECT * FROM notas having MAX(nota)=n.nota);
 44	SELECT * FROM asignaturas AS asig WHERE EXISTS (SELECT * FROM notas WHERE asignatura=asig.COD AND nombre LIKE '%os%');
 45	SELECT * FROM asignaturas AS asig WHERE NOT EXISTS (SELECT * FROM notas WHERE asignatura=asig.COD ) ORDER BY cod DESC;
-46	
-47	
-48	
-49	
+46	SELECT * FROM empleados AS emple WHERE NOT EXISTS(SELECT * FROM empleados WHERE oficio=emple.OFICIO AND codemp!=emple.codemp);
+47	SELECT * FROM alumnos WHERE codigo=(SELECT alumno FROM notas AS n WHERE exists(SELECT * FROM notas HAVING MIN(nota)=n.nota));
+48	SELECT apellido,salario,iddepart FROM empleados AS emple WHERE salario=(SELECT MAX(salario) FROM empleados WHERE iddepart=emple.IDDEPART);
+49	SELECT * FROM empleados AS emple WHERE EXISTS(SELECT * FROM empleados WHERE iddepart=emple.iddepart AND apellido = 'sanchez') AND oficio='vendedor';
+50	SELECT * FROM empleados, depart;
+51	SELECT * FROM alumnos, asignaturas,notas;
+52	SELECT apellido, nombre FROM empleados, depart WHERE empleados.iddepart=depart.IDDEPART ORDER BY nombre;
+53	SELECT apellido, nombre FROM empleados, depart WHERE empleados.iddepart=depart.IDDEPART AND depart.NOMBRE!='ventas' ORDER BY nombre;
+54	SELECT * FROM empleados, depart WHERE empleados.iddepart=depart.IDDEPART AND depart.LOC='Madrid';
+55	SELECT asignaturas.NOMBRE,alumnos.nombre, nota FROM alumnos, asignaturas, notas WHERE alumnos.codigo=notas.alumno AND asignaturas.COD=notas.asignatura;
+56	SELECT asignaturas.NOMBRE AS asignatura, alumnos.nombre, apellidos FROM notas JOIN alumnos ON notas.alumno=alumnos.codigo JOIN asignaturas ON asignaturas.cod=notas.asignatura WHERE asignaturas.nombre='fol';
+57	SELECT nota FROM notas JOIN alumnos ON notas.alumno=alumnos.codigo JOIN asignaturas ON asignaturas.cod=notas.asignatura WHERE alumnos.nombre='Ray' AND asignaturas.NOMBRE='Fol';
+58	SELECT apellido, salario, depart.NOMBRE AS nombre FROM empleados JOIN depart ON empleados.IDDEPART=depart.IDDEPART WHERE empleados.OFICIO=(SELECT oficio FROM empleados WHERE apellido='GIL') AND (comision=0 OR comision IS NULL);
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
