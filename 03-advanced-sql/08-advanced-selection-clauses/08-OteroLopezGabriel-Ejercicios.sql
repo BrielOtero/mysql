@@ -56,14 +56,15 @@
 56	SELECT asignaturas.NOMBRE AS asignatura, alumnos.nombre, apellidos FROM notas JOIN alumnos ON notas.alumno=alumnos.codigo JOIN asignaturas ON asignaturas.cod=notas.asignatura WHERE asignaturas.nombre='fol';
 57	SELECT nota FROM notas JOIN alumnos ON notas.alumno=alumnos.codigo JOIN asignaturas ON asignaturas.cod=notas.asignatura WHERE alumnos.nombre='Ray' AND asignaturas.NOMBRE='Fol';
 58	SELECT apellido, salario, depart.NOMBRE AS nombre FROM empleados JOIN depart ON empleados.IDDEPART=depart.IDDEPART WHERE empleados.OFICIO=(SELECT oficio FROM empleados WHERE apellido='GIL') AND (comision=0 OR comision IS NULL);
-59
-60
-61
-62
-63
-64
-65
-66
+59	SELECT AVG(salario) as media FROM empleados JOIN depart ON depart.iddepart=empleados.iddepart WHERE depart.nombre='contabilidad';
+60	SELECT apellido FROM empleados WHERE empleados.salario>(SELECT MAX(salario) FROM empleados NATURAL JOIN depart WHERE depart.NOMBRE='ventas');
+61	SELECT nombre, COUNT(*) AS 'n° trabajadores' FROM empleados NATURAL JOIN depart WHERE EXISTS(SELECT * FROM empleados NATURAL JOIN depart WHERE depart.iddepart=empleados.IDDEPART) GROUP BY iddepart;
+62	SELECT MAX(salario) AS maximo, MIN(salario) AS minimo, AVG(salario) AS media FROM empleados NATURAL JOIN depart WHERE depart.NOMBRE='ventas';
+63	SELECT iddepart, nombre, MAX(salario) AS maximo, MIN(salario) AS minimo, AVG(salario) AS promedio FROM empleados NATURAL JOIN depart GROUP BY iddepart;
+64	SELECT iddepart, nombre, oficio, MAX(salario) AS maximo, MIN(salario) AS minimo, AVG(salario) AS promedio FROM empleados NATURAL JOIN depart GROUP BY iddepart, oficio;
+	SELECT iddepart, nombre, oficio, MAX(salario) AS maximo, MIN(salario) AS minimo, AVG(salario) AS promedio FROM empleados NATURAL JOIN depart GROUP BY iddepart, oficio HAVING maximo<2000;
+65	SELECT * FROM empleados WHERE salario=(SELECT MAX(salario) FROM empleados NATURAL JOIN depart WHERE nombre='ventas');
+66	SELECT iddepart,iddepart,nombre, COUNT(*) AS total FROM empleados NATURAL JOIN depart GROUP BY iddepart ORDER BY total DESC LIMIT 1;
 67
 68
 69
