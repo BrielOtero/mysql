@@ -64,14 +64,17 @@
 64	SELECT iddepart, nombre, oficio, MAX(salario) AS maximo, MIN(salario) AS minimo, AVG(salario) AS promedio FROM empleados NATURAL JOIN depart GROUP BY iddepart, oficio;
 	SELECT iddepart, nombre, oficio, MAX(salario) AS maximo, MIN(salario) AS minimo, AVG(salario) AS promedio FROM empleados NATURAL JOIN depart GROUP BY iddepart, oficio HAVING maximo<2000;
 65	SELECT * FROM empleados WHERE salario=(SELECT MAX(salario) FROM empleados NATURAL JOIN depart WHERE nombre='ventas');
-66	SELECT iddepart,iddepart,nombre, COUNT(*) AS total FROM empleados NATURAL JOIN depart GROUP BY iddepart ORDER BY total DESC LIMIT 1;
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
+66	SELECT iddepart,nombre,COUNT(*) FROM empleados NATURAL JOIN depart GROUP BY iddepart HAVING COUNT(*)=(SELECT  COUNT(*) AS total FROM empleados NATURAL JOIN depart GROUP BY iddepart ORDER BY total DESC LIMIT 1);
+67	
+	-- 1.
+	-- 2.
+	-- 3.
+68	SELECT apellido,nombre FROM empleados NATURAL JOIN depart ORDER BY nombre;
+69	SELECT apellido,nombre,iddepart FROM empleados NATURAL JOIN depart WHERE iddepart=30;
+70	SELECT apellido, nombre FROM empleados NATURAL LEFT JOIN depart;
+71	SELECT apellido, nombre FROM empleados NATURAL RIGHT JOIN depart;
+72	SELECT  asignaturas.NOMBRE, alumnos.nombre, notas.nota FROM notas JOIN asignaturas ON notas.asignatura=asignaturas.COD JOIN alumnos ON notas.alumno=alumnos.codigo where nota>5;
+73	SELECT iddepart,nombre FROM depart NATURAL JOIN empleados WHERE salario=(SELECT MAX(salario) FROM empleados);
+74	SELECT apellido AS texto FROM empleados UNION SELECT loc FROM depart ORDER BY texto DESC LIMIT 5;
+75	SELECT apellido, nombre FROM empleados NATURAL LEFT JOIN depart union SELECT apellido, nombre FROM empleados NATURAL RIGHT JOIN depart;
+76	(SELECT nombre AS datos FROM alumnos WHERE apellidos LIKE "%i%" ORDER BY nombre DESC LIMIT 3) UNION (SELECT apellido FROM empleados NATURAL JOIN depart WHERE loc LIKE "%i%" ORDER BY apellido DESC LIMIT 2) ORDER BY datos DESC;

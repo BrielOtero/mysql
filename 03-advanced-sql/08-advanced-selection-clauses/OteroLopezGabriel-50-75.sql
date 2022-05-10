@@ -1,0 +1,14 @@
+50	SELECT * FROM empleados, depart;
+54	SELECT * FROM empleados, depart WHERE empleados.iddepart=depart.IDDEPART AND depart.LOC='Madrid';
+55	SELECT asignaturas.NOMBRE,alumnos.nombre, nota FROM alumnos, asignaturas, notas WHERE alumnos.codigo=notas.alumno AND asignaturas.COD=notas.asignatura;
+56	SELECT asignaturas.NOMBRE AS asignatura, alumnos.nombre, apellidos FROM notas JOIN alumnos ON notas.alumno=alumnos.codigo JOIN asignaturas ON asignaturas.cod=notas.asignatura WHERE asignaturas.nombre='fol';
+57	SELECT nota FROM notas JOIN alumnos ON notas.alumno=alumnos.codigo JOIN asignaturas ON asignaturas.cod=notas.asignatura WHERE alumnos.nombre='Ray' AND asignaturas.NOMBRE='Fol';
+59	SELECT AVG(salario) as media FROM empleados JOIN depart ON depart.iddepart=empleados.iddepart WHERE depart.nombre='contabilidad';
+61	SELECT nombre, COUNT(*) AS 'n° trabajadores' FROM empleados NATURAL JOIN depart WHERE EXISTS(SELECT * FROM empleados NATURAL JOIN depart WHERE depart.iddepart=empleados.IDDEPART) GROUP BY iddepart;
+64	SELECT iddepart, nombre, oficio, MAX(salario) AS maximo, MIN(salario) AS minimo, AVG(salario) AS promedio FROM empleados NATURAL JOIN depart GROUP BY iddepart, oficio;
+	SELECT iddepart, nombre, oficio, MAX(salario) AS maximo, MIN(salario) AS minimo, AVG(salario) AS promedio FROM empleados NATURAL JOIN depart GROUP BY iddepart, oficio HAVING maximo<2000;
+68	SELECT apellido, nombre FROM empleados NATURAL JOIN depart ORDER BY nombre;
+69	SELECT apellido, nombre, iddepart FROM empleados NATURAL JOIN depart WHERE iddepart=30;
+70	SELECT apellido, nombre FROM empleados NATURAL LEFT JOIN depart;
+73	SELECT iddepart, nombre FROM depart NATURAL JOIN empleados WHERE salario=(SELECT MAX(salario) FROM empleados);
+75	SELECT apellido, nombre FROM empleados NATURAL LEFT JOIN depart union SELECT apellido, nombre FROM empleados NATURAL RIGHT JOIN depart;
