@@ -4,10 +4,10 @@
 4	GRANT SELECT ON tema6.empleados TO user1@localhost;
 	-- Da error porque no puedes otorgarte privilegios a ti mismo. Es decir, desde el usuario user1 no puedes dar privilegios a user1;
 	-- Para solucionarlo lo que hay que hacer es ejecutar la consulta desde un usuario con permisos de root; 
-5	-- No se puede acceder a depart porque el user1 no tiene acceso a la tabla depart;
-6
-7
-8
+5	-- Podemos ver la tabla emple.
+6	-- No se puede acceder a depart porque el user1 no tiene acceso a la tabla depart, solo a emple;
+7	SET PASSWORD FOR user1@localhost = PASSWORD('password');
+8	GRANT SELECT(nombre,loc) ON tema6.depart TO user1@localhost WITH GRANT OPTION;
 9
 10
 11
