@@ -6,7 +6,8 @@
 8	GRANT SELECT(nombre,loc) ON tema6.depart TO user1@localhost WITH GRANT OPTION;
 9	-- No puedes hacer el Select * porque no tienes acceso a todas las columnas. A los que tengo acceso si los puedo ver.
 10	CREATE USER IF NOT EXISTS user2@localhost IDENTIFIED BY 'pass2',user3@192.168.1.144 IDENTIFIED BY 'pass3';
-11
+11	GRANT ALL ON tema6.* TO user2@localhost;
+	GRANT SELECT,INSERT ON tema6.depart TO user3@192.168.1.144;
 15
 18
 19
