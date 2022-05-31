@@ -36,46 +36,29 @@
 27	GRANT USAGE ON *.* TO user1@localhost WITH MAX_USER_CONNECTIONS 2;
 28	GRANT USAGE ON *.* TO user1@localhost WITH MAX_QUERIES_PER_HOUR 10;
 29	DROP USER user1@localhost, usuario2@'%';
-30	FLUSH PRIVILEGES;
-31
-32
-33
-34
-35
-36
+30	FLUSH PRIVILEGES; 
+31	CREATE OR REPLACE VIEW ed AS SELECT * FROM empleados NATURAL JOIN depart;
+32	SELECT apellido, oficio, nombre FROM ed;
+33	CREATE OR REPLACE VIEW ed AS SELECT apellido AS 'nombre',oficio, nombre AS 'departamento' FROM empleados NATURAL JOIN depart;
+34	CREATE OR REPLACE VIEW ed2 AS SELECT nombre, departamento FROM ed;
+35	DROP VIEW ed;
+36	-- Sucede que ed2 ya no funciona porque la tabla a la que esta vista hacía referencia ya no existe (ed) y por lo tando ed2 no puede funcionar.
 37
 38
-39
+39	CREATE OR REPLACE VIEW notas_asig_alu AS SELECT notas.*,alumnos.*,asignaturas.NOMBRE AS nome FROM notas JOIN alumnos ON codigo=alumno JOIN asignaturas ON cod=asignatura;
 40
 41
-42
-43
+42	SHOW CREATE VIEW notas_asig_alu;
+43	CREATE OR REPLACE VIEW notasalu AS SELECT nombre,asignatura AS 'materia', nota AS'calificación' FROM notas_asig_alu WHERE nota>=5;
 44
-45
+45	ALTER VIEW notasalu AS SELECT nombre,asignatura AS 'materia', nota AS'calificación',apellidos FROM notas_asig_alu WHERE nota>=5;
 46
-47
+47	CREATE OR REPLACE VIEW salarios AS SELECT apellido,loc,salario,comision FROM empleados NATURAL JOIN depart WHERE salario>1200 AND (comision<=100 OR comision IS null);
 48
-49
+49	CREATE OR REPLACE VIEW empleados AS	SELECT depart.* FROM empleados NATURAL JOIN depart; -- No se puede hacer porque empleados no es una vista. Es una tabla. 
 50
 51
 52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
+53	CREATE OR REPLACE VIEW led AS	SELECT * FROM empleados NATURAL RIGHT JOIN depart;
+54	INSERT INTO depart VALUES(99,'desarrollo','Lugo');
+55	-- Que ahora aparece el departamento insertado en el ejercicio anterior. Es decir, aparece el departamento de desarrollo.
