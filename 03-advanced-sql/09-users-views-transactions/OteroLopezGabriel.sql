@@ -55,10 +55,10 @@
 46
 47	CREATE OR REPLACE VIEW salarios AS SELECT apellido,loc,salario,comision FROM empleados NATURAL JOIN depart WHERE salario>1200 AND (comision<=100 OR comision IS null);
 48
-49	CREATE OR REPLACE VIEW empleados AS	SELECT depart.* FROM empleados NATURAL JOIN depart; -- No se puede hacer porque empleados no es una vista. Es una tabla. 
+49	CREATE OR REPLACE VIEW empleados AS	SELECT depart.* FROM empleados NATURAL JOIN depart; -- No se puede hacer porque empleados no es una vista. Es una tabla.
 50
 51
 52
-53	CREATE OR REPLACE VIEW led AS	SELECT * FROM empleados NATURAL RIGHT JOIN depart;
+53	CREATE OR REPLACE VIEW led AS SELECT * FROM empleados NATURAL RIGHT JOIN depart;
 54	INSERT INTO depart VALUES(99,'desarrollo','Lugo');
 55	-- Que ahora aparece el departamento insertado en el ejercicio anterior. Es decir, aparece el departamento de desarrollo.
